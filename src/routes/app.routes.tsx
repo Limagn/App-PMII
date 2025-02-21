@@ -24,12 +24,13 @@ export function AppRoutes() {
       // headerShown: false,
       tabBarActiveTintColor: '#FFFFFF',
       tabBarInactiveTintColor: '#A8A29E',
+      tabBarShowLabel: false,
       tabBarStyle: {  height: '10%', backgroundColor: '#000' },
-      tabBarItemStyle: { paddingTop: 5 },
-      tabBarLabelStyle: {
-        marginTop: 10,
-        fontSize: 11, 
-      },
+      tabBarItemStyle: { paddingTop: 15 },
+      // tabBarLabelStyle: {
+      //   marginTop: 10,
+      //   fontSize: 11, 
+      // },
     }}
     >
       <Screen 
@@ -43,7 +44,7 @@ export function AppRoutes() {
               name="house" 
               color={color} 
               focused={focused} 
-              size={22}
+              size={26}
             />
           )
         }}
