@@ -2,7 +2,7 @@ import { BottomTabNavigationProp, createBottomTabNavigator } from "@react-naviga
 import Dashboard from "../pages/Dashboard";
 import List from "../pages/List";
 import Search from "../pages/Search";
-import { TabIcon } from "../components/TabIcon";
+import { TabIcon } from "../components/ui/TabIcon";
 import FontAwesome from '@expo/vector-icons/FontAwesome5';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
@@ -21,23 +21,23 @@ export function AppRoutes() {
   return(
     <Navigator
     screenOptions={{
-      // headerShown: false,
+      headerShown: false,
       tabBarActiveTintColor: '#FFFFFF',
       tabBarInactiveTintColor: '#A8A29E',
       tabBarShowLabel: false,
       tabBarStyle: {  height: '10%', backgroundColor: '#000' },
       tabBarItemStyle: { paddingTop: 15 },
-      // tabBarLabelStyle: {
-      //   marginTop: 10,
-      //   fontSize: 11, 
-      // },
+      tabBarLabelStyle: {
+        marginTop: 10,
+        fontSize: 11, 
+      },
     }}
     >
       <Screen 
         name="Dashboard"
         component={Dashboard}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Dashboard',
           tabBarIcon: (({ focused, color }) => 
             <TabIcon 
               IconComponent={FontAwesome6} 
