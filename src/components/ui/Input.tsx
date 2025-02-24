@@ -4,9 +4,9 @@ type InputProps = TextInputProps;
 
 export function Input({ ...rest }: InputProps) {
   return (
-    <View className="w-full pt-3">
+    <View className="w-full pt-2">
       <TextInput
-        className="w-full bg-card p-5 text-foreground text-base mt-0.5 rounded-xl shadow border border-border"
+        className="w-full bg-card p-3 pb-4 text-foreground text-xl mt-0.5 rounded-xl shadow border border-border"
         {...rest}
       />
     </View>

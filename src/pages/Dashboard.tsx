@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, Text, View } from 'react-native';
-import { InputDate } from '../../components/ui/InputDate';
+import { Alert, ScrollView, Text, View } from 'react-native';
+import { InputDate } from '../components/ui/InputDate';
 import { useState } from 'react';
-import { Card, CardContent, CardTitle } from '../../components/ui/Card';
-import { Input } from '../../components/ui/Input';
-import { Header } from '../../components/ui/Header';
+import { Card, CardContent, CardTitle } from '../components/ui/Card';
+import { Input } from '../components/ui/Input';
+import { Header } from '../components/ui/Header';
+import { SpendingGetAll } from '../Storage/Spending/spendingGetAll';
+import { SpendingCreate } from '../Storage/Spending/spendingCreate';
+import { Button } from '../components/ui/Button';
 
 export default function App() {
   const [description, setDescription] = useState('')
@@ -13,6 +16,29 @@ export default function App() {
   const [category, setCategory] = useState('')
   const [location, setLocation] = useState('')
   
+  async function handleAddSpending() {
+    const data = {
+      description,
+      amount,
+      purchaseDate,
+      category,
+      location,
+    }
+
+    if (description === "" || amount === "" || purchaseDate === "" || category === "" || location === "") {
+      SpendingGetAll();
+      return Alert.alert('Campos vazios.', 'Favor preencher campos vazios!');
+    };
+
+    await SpendingCreate(data);
+
+    Alert.alert('Cadastro','Cadastrado com sucesso!');
+    setCategory('');
+    setAmount('');
+    setPurchaseDate('');
+    setCategory('');
+    setLocation('');
+  }
 
   const placeholderTextColor = '#71717A'
 
@@ -80,6 +106,10 @@ export default function App() {
                 />
             </CardContent>
           </Card>
+          <Button 
+            title='Adicionar'
+            onPress={handleAddSpending}
+          />
           <StatusBar style="auto" />
         </ScrollView>
       </View>

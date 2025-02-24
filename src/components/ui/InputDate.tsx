@@ -8,7 +8,7 @@ type InputProps = TextInputProps
 
 export function InputDate({ ...rest }: InputProps) {
   return (
-    <View className="w-full pt-3">
+    <View className="w-full pt-2">
       <TextInputMask
         type={'datetime'}
         options={{

@@ -13,7 +13,7 @@ type CardPropsText = React.ComponentProps<typeof Text> & {
 const Card = React.forwardRef<View, CardPropsView>(({ className, ...props }, ref) => (
   <View
     ref={ref}
-    className={cn("bg-card mb-5 p-4 rounded-xl shadow-md w-full lg:w-1/4 border border-border", className)}
+    className={cn("bg-card mb-5 p-2 rounded-xl shadow-md w-full lg:w-1/4 border border-border", className)}
     {...props}
   />
 ));
@@ -33,7 +33,7 @@ Card.displayName = "CardHeader";
 const CardTitle = React.forwardRef<View, CardPropsText>(({ className, ...props }, ref) => (
   <Text
   ref={ref}
-  className={cn("text-3xl font-semibold text-foreground tracking-tight", className)}
+  className={cn("text-2xl font-semibold text-foreground tracking-tight mt-1 pl-3", className)}
   
   {...props}
   />
