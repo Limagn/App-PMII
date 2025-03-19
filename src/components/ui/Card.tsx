@@ -33,7 +33,7 @@ Card.displayName = "CardHeader";
 const CardTitle = React.forwardRef<View, CardPropsText>(({ className, ...props }, ref) => (
   <Text
   ref={ref}
-  className={cn("text-2xl font-semibold text-foreground tracking-tight mt-1 pl-3", className)}
+  className={cn("text-2xl font-semibold text-foreground tracking-tight mt-1 pl-1", className)}
   
   {...props}
   />
@@ -44,7 +44,7 @@ Card.displayName = "CardTitle";
 const CardContent = React.forwardRef<View, CardPropsView>(({ className, ...props }, ref) => (
   <View
   ref={ref}
-  className={cn("flex flex-row justify-between p-3 pt-0", className)}
+  className={cn("flex flex-row justify-between pl-4 pr-4 pb-2", className)}
   {...props}
   />
 ));
@@ -54,7 +54,7 @@ Card.displayName = "CardContent";
 const CardDescription = React.forwardRef<Text, CardPropsText>(({ className, ...props }, ref) => (
   <Text
   ref={ref}
-  className={cn(" text-muted-foreground", className)}
+  className={cn("text-2xl text-muted-foreground", className)}
   {...props}
   />
 ));
@@ -70,4 +70,13 @@ const CardFooter = React.forwardRef<View, CardPropsView>(({ className, ...props 
 ));
 Card.displayName = "CardFooter";
 
-export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter };
+const CardFooterText = React.forwardRef<Text, CardPropsText>(({ className, ...props }, ref) => (
+  <Text
+  ref={ref}
+  className={cn("text-lg text-muted-foreground p-1", className)}
+  {...props}
+  />
+));
+Card.displayName = "CardFooterText";
+
+export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, CardFooterText };

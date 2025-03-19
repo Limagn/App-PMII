@@ -11,7 +11,7 @@ export async function SpendingCreate(newSpending: SpendingStorageDTO) {
 
     await AsyncStorage.setItem(SPENDING_COLLECTION, JSON.stringify(updatedSpending));
 
-    } catch (error) {
+  } catch (error) {
     console.error(error)
     throw error;
   }
