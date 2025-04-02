@@ -7,24 +7,38 @@ import { Button } from '../components/ui/Button';
 import { SpendingGetAll } from '../Storage/Spending/spendingGetAll';
 import { SpendingStorageDTO } from '../Storage/Spending/spendingStorageDTO';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 
 export default function List() {
   const [spendingList, setSpendingList] = useState<SpendingStorageDTO[]>();
 
-  const fetchSpendings = useCallback(async () => {
+  // const fetchSpendings = useCallback(async () => {
+  //   const data = await SpendingGetAll();
+  //   setSpendingList(data)
+  // }, []);
+  
+  // useEffect(() => {
+  //   fetchSpendings();
+  // }, [])
+
+  // function handleListSpendings() {
+  //   fetchSpendings();
+  // }
+
+  async function loadDataSpendig() {
     const data = await SpendingGetAll();
     setSpendingList(data)
-  }, []);
-  
-  useEffect(() => {
-    fetchSpendings();
-  }, [fetchSpendings])
+  } 
+
+  useFocusEffect(useCallback(() => {
+    loadDataSpendig()
+  }, []))
 
   function handleListSpendings() {
-    fetchSpendings();
+    loadDataSpendig();
   }
-
+  
   function deleteAll() {
     Alert.alert(
       'Atenção',
@@ -34,6 +48,7 @@ export default function List() {
           text: 'Sim',
           onPress: () => {
             AsyncStorage.clear()
+            loadDataSpendig()
             console.log('Deletado')
             Alert.alert('Registros deletados com sucesso!')
           }
@@ -44,7 +59,6 @@ export default function List() {
         }
       ]
     )
-    
   }
   
   return (
@@ -58,27 +72,52 @@ export default function List() {
             className=''
             data={spendingList}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={({item})=>(
+            renderItem={({item}) => (
               <Card>
+                <CardHeader>
+                  <CardTitle className='text-3xl'>
+                    {item.description} 
+                  </CardTitle>
+                </CardHeader>
                 <CardContent>
-                  <CardTitle className='text-3xl'>
-                    {item.description}
-                  </CardTitle>
-                  <CardTitle className='text-3xl'>
-                    {item.description}
-                  </CardTitle>
-                  <CardTitle className='text-3xl'>
-                    {item.description}
-                  </CardTitle>
-                  <CardTitle className='text-3xl'>
-                    {item.description}
-                  </CardTitle>
-                  <CardTitle className='text-3xl'>
-                    {item.description}
-                  </CardTitle>
+                  <CardDescription className='text-green-700'>
+                    R$ {item.amount}
+                  </CardDescription>
+                  <CardDescription>
+                    {item.location}
+                  </CardDescription>
                 </CardContent>
+                <CardFooter>
+                  <CardDescription>
+                    {item.category}
+                  </CardDescription>
+                  <CardDescription>
+                    {item.purchaseDate}
+                  </CardDescription>
+                </CardFooter>
               </Card>
             )}
+            // renderItem={({item})=>(
+            //   <Card>
+            //     <CardContent className='flex-1 flex-col flex'>
+            //       <CardTitle className='text-3xl'>
+            //         Descrição: {item.description}
+            //       </CardTitle>
+            //       <CardTitle className='text-3xl'>
+            //         Data: {item.purchaseDate}
+            //       </CardTitle>
+            //       <CardTitle className='text-3xl'>
+            //         Valor: {item.amount}
+            //       </CardTitle>
+            //       <CardTitle className='text-3xl'>
+            //         Categoria: {item.category}
+            //       </CardTitle>
+            //       <CardTitle className='text-3xl'>
+            //         Local: {item.location}
+            //       </CardTitle>
+            //     </CardContent>
+            //   </Card>
+            // )}
             ListEmptyComponent={() => (
               <Text className='text-xl text-white text-center'>
                 Não há nenhum registro. Favor cadastrar.

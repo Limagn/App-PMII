@@ -33,7 +33,7 @@ export default function App() {
     await SpendingCreate(data);
 
     Alert.alert('Cadastro','Cadastrado com sucesso!');
-    setCategory('');
+    setDescription('');
     setAmount('');
     setPurchaseDate('');
     setCategory('');

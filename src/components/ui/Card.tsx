@@ -33,7 +33,7 @@ Card.displayName = "CardHeader";
 const CardTitle = React.forwardRef<View, CardPropsText>(({ className, ...props }, ref) => (
   <Text
   ref={ref}
-  className={cn("text-2xl font-semibold text-foreground tracking-tight mt-1 pl-1", className)}
+  className={cn("text-2xl font-semibold text-white tracking-tight mt-1 pl-1", className)}
   
   {...props}
   />
@@ -64,7 +64,7 @@ Card.displayName = "CardDescription";
 const CardFooter = React.forwardRef<View, CardPropsView>(({ className, ...props }, ref) => (
   <View
   ref={ref}
-  className={cn("flex flex-row justify-between p-3 pt-0", className)}
+  className={cn("flex flex-row justify-between p-4 pt-0", className)}
   {...props}
   />
 ));
